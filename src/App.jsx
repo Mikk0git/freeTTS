@@ -6,8 +6,16 @@ function App() {
 
   return (
     <div className="App">
-      
-      
+      <nav className="App-navbar">
+        <h1 className='text-center font-bold '>freeTTS</h1>
+      </nav>
+      <section className='p-7 flex justify-center text-center'>
+        <form action="" >
+          <textarea className='textPrompt text-black'></textarea>
+          <button type="submit" id='generateBtn'></button>
+          <label htmlFor="generateBtn"><h2>Generate</h2></label>
+        </form>
+      </section>
       
       
     </div>
