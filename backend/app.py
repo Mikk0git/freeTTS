@@ -12,5 +12,5 @@ print(language)
 # utworzenie obiektu gTTS
 tts = gTTS(text=text.decode('utf-8'), lang=language, slow=False)
 
-# # zapisanie wyniku do pliku audio
-tts.save("s.mp3")
+# zapisanie wyniku do pliku audio
+tts.save(f"audio/{id}/{id}.mp3")
