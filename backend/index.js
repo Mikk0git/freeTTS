@@ -1,10 +1,12 @@
 require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const cors = require("cors");
+const { createHash } = require("crypto");
 const MongoClient = require("mongodb").MongoClient;
 const mongoose = require("mongoose");
 const User = require("./models/user");
 const Audio = require("./models/audio");
+const { base } = require("./models/user");
 
 const app = express();
 const PORT = 8080;
@@ -35,6 +37,36 @@ app.use(
     origin: "http://localhost:5173",
   })
 );
+
+app.post("/login", (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+
+  //Hashing password
+  function hash(password) {
+    return createHash("sha256").update(password).digest("base64");
+  }
+
+  const pass = hash(req.body.pass);
+
+  console.log("Name: " + name);
+  console.log("Email: " + email);
+  console.log("Pass: " + pass);
+  res.status(200).json({ message: "Success" }); // Return JSON
+
+  //Saving data to DB
+  const user = new User({
+    name: name,
+    email: email,
+    hassPass: pass,
+  });
+  user
+    .save()
+    .then((result) => {
+      console.log("Saved to database:", result);
+    })
+    .catch((err) => console.log(err));
+});
 
 app.post("/prompt", (req, res) => {
   const language = req.body.language;
