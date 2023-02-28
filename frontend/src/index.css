@@ -4,18 +4,18 @@
 
 @import "tailwindcss/utilities";
 
-body{
-    background-color: #262730;
-    color: white;
-    font-family: 'Work Sans', sans-serif;
+body {
+  background-color: #262730;
+  color: white;
+  font-family: "Work Sans", sans-serif;
 }
 input {
-    text-align: left;
-    overflow-wrap: break-word;
+  text-align: left;
+  overflow-wrap: break-word;
 }
-.textPrompt{
-    width: 50vw;
-    height: 30vh;
-    border: 3px black solid;
-    
+.textPrompt {
+  width: 50vw;
+  height: 30vh;
+  border: 3px black solid;
+  color: black;
 }
