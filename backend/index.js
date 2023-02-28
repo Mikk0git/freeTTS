@@ -1,5 +1,6 @@
 require("dotenv").config({ path: "../.env" });
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const { createHash } = require("crypto");
 const MongoClient = require("mongodb").MongoClient;
@@ -12,14 +13,12 @@ const app = express();
 const PORT = 8080;
 
 //Connecting to mongoDB
-const MONGODB_LOGIN = process.env.MONGODB_LOGIN;
-const MONGODB_PASS = process.env.MONGODB_PASS;
 
 const dbURI =
   "mongodb+srv://" +
-  MONGODB_LOGIN +
+  process.env.MONGODB_LOGIN +
   ":" +
-  MONGODB_PASS +
+  process.env.MONGODB_PASS +
   "@freettsdb.6gathmr.mongodb.net/freeTTSdb?retryWrites=true&w=majority";
 mongoose
   .connect(dbURI)
@@ -29,8 +28,16 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-//Middleware for JSON
+//Middleware
 app.use(express.json());
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 // allow requests from http://localhost:5173
 app.use(
   cors({
@@ -38,15 +45,14 @@ app.use(
   })
 );
 
-app.post("/login", (req, res) => {
+//Hashing password
+function hash(password) {
+  return createHash("sha256").update(password).digest("base64");
+}
+
+app.post("/register", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
-
-  //Hashing password
-  function hash(password) {
-    return createHash("sha256").update(password).digest("base64");
-  }
-
   const pass = hash(req.body.pass);
 
   console.log("Name: " + name);
@@ -68,13 +74,33 @@ app.post("/login", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+app.post("/login", (req, res) => {
+  const pass = hash(req.body.pass);
+  const email = req.body.email;
+
+  User.findOne({ email: email, hassPass: pass })
+    .then((user) => {
+      if (user) {
+        req.session.user = user._id; // setting session
+        res.status(200).send("Logged " + req.session.user);
+        return req.session.user;
+      } else {
+        res.status(401).send("Incorrect login details");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Internal server error");
+    });
+});
+
 app.post("/prompt", (req, res) => {
   const language = req.body.language;
   const text = req.body.text;
   const audio = new Audio({
     text: text,
     lang: language,
-    userID: "123",
+    userID: "req.session.user",
   });
 
   audio

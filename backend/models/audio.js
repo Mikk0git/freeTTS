@@ -12,7 +12,7 @@ const audioShema = new Schema({
   },
   userID: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

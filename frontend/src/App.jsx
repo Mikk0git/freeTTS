@@ -1,3 +1,4 @@
+import { AppLogin } from "./components/AppLogin";
 import { AppCookie } from "./components/AppCookie";
 import { AppForm } from "./components/AppForm";
 import { useState } from "react";
@@ -9,10 +10,9 @@ function App() {
       <nav className="App-navbar">
         <h1 className="text-center font-bold ">freeTTS</h1>
       </nav>
-
       <AppForm />
-
       <AppCookie />
+      <AppLogin />
     </div>
   );
 }
