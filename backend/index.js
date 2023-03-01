@@ -7,7 +7,6 @@ const { createHash } = require("crypto");
 const MongoClient = require("mongodb").MongoClient;
 const mongoose = require("mongoose");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const cookieParser = require("cookie-parser");
 const User = require("./models/user");
 const Audio = require("./models/audio");
 const { base } = require("./models/user");
@@ -56,7 +55,6 @@ app.use(
     credentials: true,
   })
 );
-app.use(cookieParser());
 
 //Hashing password
 function hash(password) {
@@ -103,21 +101,42 @@ app.post("/register", (req, res) => {
   console.log("Name: " + name);
   console.log("Email: " + email);
   console.log("Pass: " + pass);
-  // Return JSON
 
-  //Saving data to DB
-  const user = new User({
-    name: name,
-    email: email,
-    hashPass: pass,
-  });
-  user
-    .save()
-    .then((result) => {
-      console.log("Saved to database:", result);
+  User.findOne({ email: email })
+    .then((user) => {
+      if (user) {
+        res
+          .status(409)
+          .json({ error: "This email address is already registered" });
+      } else {
+        User.findOne({ name: name }).then((user) => {
+          if (user) {
+            res.status(409).json({ error: "This name is already registered" });
+          } else {
+            //Saving data to DB
+            const user = new User({
+              name: name,
+              email: email,
+              hashPass: pass,
+            });
+            user
+              .save()
+              .then((result) => {
+                console.log("Saved to database:", result);
+                res.json({ message: "Success" });
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(500).send("Internal server error");
+              });
+          }
+        });
+      }
     })
-    .catch((err) => console.log(err));
-  res.status(200).json({ message: "Success" }).redirect("/login");
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Internal server error");
+    });
 });
 
 app.post("/login", (req, res) => {
