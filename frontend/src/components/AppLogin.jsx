@@ -39,12 +39,38 @@ export function AppLogin() {
       console.error(error);
     }
   };
-
+  const handleSubmitRegister = async (event) => {
+    event.preventDefault();
+    console.log("register");
+    const formData = new FormData(event.target);
+    const email = formData.get("email");
+    const pass = formData.get("password");
+    const name = formData.get("name");
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/register",
+        {
+          name,
+          email,
+          pass,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      if (response.status === 200) {
+        console.log("registered");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   if (showRegister === true) {
     return (
       <div className="AppRegister">
         <h2>Sign up</h2>
-        <form className="text-black">
+        <form onSubmit={handleSubmitRegister} className="text-black">
           <input type="text" name="name" placeholder="Name" />
           <br />
           <input type="email" name="email" placeholder="Email" />

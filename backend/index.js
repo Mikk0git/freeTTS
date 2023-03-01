@@ -163,6 +163,12 @@ app.post("/login", (req, res) => {
     });
 });
 
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+  });
+});
+
 app.post("/prompt", (req, res) => {
   const language = req.body.language;
   const text = req.body.text;

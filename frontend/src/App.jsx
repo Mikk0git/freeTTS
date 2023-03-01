@@ -1,3 +1,4 @@
+import { AppLogout } from "./components/AppLogout";
 import { AppLogin } from "./components/AppLogin";
 import { AppCookie } from "./components/AppCookie";
 import { AppForm } from "./components/AppForm";
@@ -13,6 +14,7 @@ function App() {
       <AppForm />
       {/* <AppCookie /> */}
       <AppLogin />
+      <AppLogout />
     </div>
   );
 }
