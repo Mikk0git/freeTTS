@@ -11,7 +11,7 @@ function App() {
         <h1 className="text-center font-bold ">freeTTS</h1>
       </nav>
       <AppForm />
-      <AppCookie />
+      {/* <AppCookie /> */}
       <AppLogin />
     </div>
   );

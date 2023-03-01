@@ -6,10 +6,16 @@ export function AppForm() {
     const formData = new FormData(event.target);
     const text = formData.get("textPrompt");
     const language = formData.get("language");
-    const response = await axios.post("http://localhost:8080/prompt", {
-      text,
-      language,
-    });
+    const response = await axios.post(
+      "http://localhost:8080/prompt",
+      {
+        text,
+        language,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     console.log(response.data);
   };
 
