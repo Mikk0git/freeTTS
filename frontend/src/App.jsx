@@ -1,20 +1,23 @@
-import { AppLogout } from "./components/AppLogout";
+import { AppProfile } from "./components/AppProfile";
 import { AppLogin } from "./components/AppLogin";
-import { AppCookie } from "./components/AppCookie";
 import { AppForm } from "./components/AppForm";
-import { useState } from "react";
+import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <nav className="App-navbar">
-        <h1 className="text-center font-bold ">freeTTS</h1>
+        <h1 className="text-center font-bold ">
+          <Link to={"/"}>freeTTS</Link>
+        </h1>
+        <AppProfile />
       </nav>
-      <AppForm />
-      {/* <AppCookie /> */}
-      <AppLogin />
-      <AppLogout />
+
+      <Routes>
+        <Route path="/" element={<AppForm />} />
+        <Route path="/login" element={<AppLogin />} />
+      </Routes>
     </div>
   );
 }
