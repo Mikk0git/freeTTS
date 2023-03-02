@@ -150,6 +150,7 @@ app.post("/login", (req, res) => {
         req.session.user = user._id;
         req.session.isAuth = true;
         console.log(req.session.isAuth);
+        console.log(req.session.user + "logged in");
 
         res.status(200).send("Logged " + req.session.user);
         return req.session.user;
@@ -163,9 +164,26 @@ app.post("/login", (req, res) => {
     });
 });
 
+app.post("/login/verify", (req, res) => {
+  console.log(req.session);
+  console.log(req.session.user);
+  if (req.session && req.session.user) {
+    res
+      .status(200)
+      .send({ message: "User is logged in", userID: req.session.user });
+  } else {
+    res.status(401).send("User isn't logged in");
+  }
+});
+
 app.post("/logout", (req, res) => {
+  console.log(req.session.user + " logged out");
+
   req.session.destroy((err) => {
     if (err) throw err;
+    else {
+      res.status(200).send(" logged out");
+    }
   });
 });
 

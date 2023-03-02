@@ -16,6 +16,8 @@ export function AppLogout() {
       );
       console.log(response.data);
       if (response.status === 200) {
+        window.location.reload();
+        //window.location.href = "/";
         console.log("logged out");
       }
     } catch (error) {

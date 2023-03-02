@@ -34,6 +34,8 @@ export function AppLogin() {
       console.log(response.data);
       if (response.status === 200) {
         console.log("logged in");
+        //window.location.reload();
+        window.location.href = "/";
       }
     } catch (error) {
       console.error(error);
