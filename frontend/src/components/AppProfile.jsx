@@ -22,13 +22,14 @@ export function AppProfile() {
       if (response.status === 200) {
         console.log("User is logged in as: " + response.data.userID);
         setIsLoggedIn(true);
-      } else if (response.status === 401) {
-        console.log("Not logged in");
-        setIsLoggedIn(false);
       }
     } catch (error) {
-      console.error(error);
-      console.log("Error!");
+      if (error.response.status === 401) {
+        console.log("Not logged in");
+        setIsLoggedIn(false);
+      } else {
+        console.error(error);
+      }
     }
   }
 
@@ -48,7 +49,6 @@ export function AppProfile() {
       <div className="AppProfile">
         <h1>
           <Link to={"/login"}>Sign up</Link>
-          <AppLogout />
         </h1>
       </div>
     );

@@ -13,8 +13,18 @@ input {
   text-align: left;
   overflow-wrap: break-word;
 }
+
+.logo {
+  margin-left: calc(50vw - 29px);
+}
+
 .textPrompt {
-  width: 50vw;
-  height: 30vh;
+  width: 70vw;
+  height: 40vh;
   border: 3px black solid;
+}
+
+#langList {
+  width: 70vw;
+  font-size: x-large;
 }

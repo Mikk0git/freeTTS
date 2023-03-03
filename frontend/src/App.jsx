@@ -2,16 +2,19 @@ import { AppProfile } from "./components/AppProfile";
 import { AppLogin } from "./components/AppLogin";
 import { AppForm } from "./components/AppForm";
 import { Link, Route, Routes } from "react-router-dom";
-import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <nav className="App-navbar">
-        <h1 className="text-center font-bold ">
-          <Link to={"/"}>freeTTS</Link>
-        </h1>
-        <AppProfile />
+      <nav className="App-navbar flex justify-between mt-2">
+        <div className="logo">
+          <h1 className="font-bold  ">
+            <Link to={"/"}>freeTTS</Link>
+          </h1>
+        </div>
+        <div className=" mr-6">
+          <AppProfile />
+        </div>
       </nav>
 
       <Routes>

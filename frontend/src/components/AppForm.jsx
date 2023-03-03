@@ -33,10 +33,10 @@ export function AppForm() {
             type="radio"
             id="English"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="en"
           ></input>
-          <label htmlFor="English" className="m-4">
+          <label htmlFor="English" className="lang  m-4">
             {" "}
             🇺🇸{" "}
           </label>
@@ -44,10 +44,10 @@ export function AppForm() {
             type="radio"
             id="Simplified Chinese"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="zh"
           ></input>
-          <label htmlFor="Simplified Chinese" className="m-4">
+          <label htmlFor="Simplified Chinese" className="lang  m-4">
             {" "}
             🇨🇳{" "}
           </label>
@@ -55,10 +55,10 @@ export function AppForm() {
             type="radio"
             id="Spanish"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="es"
           ></input>
-          <label htmlFor="Spanish" className="m-4">
+          <label htmlFor="Spanish" className="lang  m-4">
             {" "}
             🇪🇸{" "}
           </label>
@@ -66,10 +66,10 @@ export function AppForm() {
             type="radio"
             id="French"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="fr"
           ></input>
-          <label htmlFor="French" className="m-4">
+          <label htmlFor="French" className="lang  m-4">
             {" "}
             🇫🇷{" "}
           </label>
@@ -77,10 +77,10 @@ export function AppForm() {
             type="radio"
             id="Arabic"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="ar"
           ></input>
-          <label htmlFor="Arabic" className="m-4">
+          <label htmlFor="Arabic" className="lang  m-4">
             {" "}
             🇸🇦{" "}
           </label>
@@ -88,10 +88,10 @@ export function AppForm() {
             type="radio"
             id="Ukrainian"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="uk"
           ></input>
-          <label htmlFor="Ukrainian" className="m-4">
+          <label htmlFor="Ukrainian" className="lang  m-4">
             {" "}
             🇺🇦{" "}
           </label>
@@ -99,10 +99,10 @@ export function AppForm() {
             type="radio"
             id="German"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="de"
           ></input>
-          <label htmlFor="German" className="m-4">
+          <label htmlFor="German" className="lang  m-4">
             {" "}
             🇩🇪{" "}
           </label>
@@ -110,10 +110,10 @@ export function AppForm() {
             type="radio"
             id="Portuguese"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="pt"
           ></input>
-          <label htmlFor="Portuguese" className="m-4">
+          <label htmlFor="Portuguese" className="lang  m-4">
             {" "}
             🇵🇹{" "}
           </label>
@@ -121,10 +121,10 @@ export function AppForm() {
             type="radio"
             id="Italian"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="it"
           ></input>
-          <label htmlFor="Italian" className="m-4">
+          <label htmlFor="Italian" className="lang  m-4">
             {" "}
             🇮🇹{" "}
           </label>
@@ -132,10 +132,10 @@ export function AppForm() {
             type="radio"
             id="Turkish"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="tr"
           ></input>
-          <label htmlFor="Turkish" className="m-4">
+          <label htmlFor="Turkish" className="lang  m-4">
             {" "}
             🇹🇷{" "}
           </label>
@@ -143,10 +143,10 @@ export function AppForm() {
             type="radio"
             id="Japanese"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="ja"
           ></input>
-          <label htmlFor="Japanese" className="m-4">
+          <label htmlFor="Japanese" className="lang  m-4">
             {" "}
             🇯🇵{" "}
           </label>
@@ -154,10 +154,10 @@ export function AppForm() {
             type="radio"
             id="Korean"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="ko"
           ></input>
-          <label htmlFor="Korean" className="m-4">
+          <label htmlFor="Korean" className="lang  m-4">
             {" "}
             🇰🇷{" "}
           </label>
@@ -165,10 +165,10 @@ export function AppForm() {
             type="radio"
             id="Dutch"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="nl"
           ></input>
-          <label htmlFor="Dutch" className="m-4">
+          <label htmlFor="Dutch" className="lang  m-4">
             {" "}
             🇳🇱{" "}
           </label>
@@ -176,10 +176,10 @@ export function AppForm() {
             type="radio"
             id="Polish"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="pl"
           ></input>
-          <label htmlFor="Polish" className="m-4">
+          <label htmlFor="Polish" className="lang  m-4">
             {" "}
             🇵🇱{" "}
           </label>
@@ -187,10 +187,10 @@ export function AppForm() {
             type="radio"
             id="Indonesian"
             name="language"
-            className="hiddena"
+            className="hiddena langInput"
             value="id"
           ></input>
-          <label htmlFor="Indonesian" className="m-4">
+          <label htmlFor="Indonesian" className="lang  m-4">
             {" "}
             🇮🇩{" "}
           </label>
