@@ -19,7 +19,15 @@ function App() {
 
       <Routes>
         <Route path="/" element={<AppForm />} />
-        <Route path="/login" element={<AppLogin />} />
+
+        <Route
+          path="/login"
+          element={
+            <div className="flex justify-center mt-24 mr-14 ml-14  border-2">
+              <AppLogin />
+            </div>
+          }
+        />
       </Routes>
     </div>
   );

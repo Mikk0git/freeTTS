@@ -70,30 +70,34 @@ export function AppLogin() {
   };
   if (showRegister === true) {
     return (
-      <div className="AppRegister">
+      <div className="AppLogin AppRegisterForm">
         <h2>Sign up</h2>
-        <form onSubmit={handleSubmitRegister} className="text-black">
+        <form onSubmit={handleSubmitRegister}>
           <input type="text" name="name" placeholder="Name" />
           <br />
           <input type="email" name="email" placeholder="Email" />
           <br />
           <input type="password" name="password" placeholder="Password" />
+          <br />
+          <button onClick={changeToLogin}>Already have an account?</button>{" "}
+          <br />
           <button>Register</button>
         </form>
-        <button onClick={changeToLogin}>Already have an account?</button>
       </div>
     );
   } else {
     return (
-      <div className="AppLogin">
+      <div className="AppLogin AppLoginForm">
         <h2>Sign in</h2>
-        <form className="text-black" onSubmit={handleSubmitLogin}>
+        <form onSubmit={handleSubmitLogin}>
           <input type="email" name="email" placeholder="Email" />
           <br />
           <input type="password" name="password" placeholder="Password" />
+          <br />
+          <button onClick={changeToRegister}>Don't have an account?</button>
+          <br />
           <button type="submit">Login</button>
         </form>
-        <button onClick={changeToRegister}>Don't have an account?</button>
       </div>
     );
   }
