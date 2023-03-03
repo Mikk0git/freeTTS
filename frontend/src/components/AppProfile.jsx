@@ -6,6 +6,7 @@ import { AppLogout } from "./AppLogout";
 
 export function AppProfile() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hideSignUp, sethideSignUp] = useState(false);
 
   async function verifyLogin(event) {
     console.log("verifying");
@@ -33,8 +34,20 @@ export function AppProfile() {
     }
   }
 
+  const verifyUrl = () => {
+    if (window.location.pathname === "/login") {
+      sethideSignUp(true);
+    } else {
+      sethideSignUp(false);
+    }
+  };
+
   useEffect(() => {
     verifyLogin();
+  }, []);
+
+  useEffect(() => {
+    verifyUrl();
   }, []);
 
   if (isLoggedIn) {
@@ -45,12 +58,17 @@ export function AppProfile() {
       </div>
     );
   } else {
-    return (
-      <div className="AppProfile">
-        <h1>
-          <Link to={"/login"}>Sign up</Link>
-        </h1>
-      </div>
-    );
+    if (hideSignUp === true) {
+      console.log(window.location.pathname);
+      return null;
+    } else {
+      return (
+        <div className="AppProfile">
+          <h1>
+            <a href="/login">Sign up</a>
+          </h1>
+        </div>
+      );
+    }
   }
 }

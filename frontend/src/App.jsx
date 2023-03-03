@@ -9,7 +9,7 @@ function App() {
       <nav className="App-navbar flex justify-between mt-2">
         <div className="logo">
           <h1 className="font-bold  ">
-            <Link to={"/"}>freeTTS</Link>
+            <a href="/">freeTTS</a>
           </h1>
         </div>
         <div className=" mr-6">
@@ -23,7 +23,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <div className="flex justify-center mt-24 mr-14 ml-14  border-2">
+            <div id="appLoginWrapper" className="flex justify-center border-2">
               <AppLogin />
             </div>
           }
