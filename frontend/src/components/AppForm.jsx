@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import axios from "axios";
 
 export function AppForm() {
+  const [audioSrc, setAudioSrc] = useState(null);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -14,9 +16,14 @@ export function AppForm() {
       },
       {
         withCredentials: true,
+        headers: {
+          Accept: "audio/mpeg",
+        },
+        responseType: "arraybuffer",
       }
     );
-    console.log(response.data);
+    const blob = new Blob([response.data], { type: "audio/mpeg" });
+    setAudioSrc(URL.createObjectURL(blob));
   };
 
   return (
@@ -200,6 +207,8 @@ export function AppForm() {
           <h2>Generate</h2>
         </label>
       </form>
+      <br />
+      {audioSrc && <audio controls src={audioSrc} />}
     </section>
   );
 }

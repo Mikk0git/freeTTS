@@ -10,6 +10,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const User = require("./models/user");
 const Audio = require("./models/audio");
 const { base } = require("./models/user");
+const path = require("path");
 
 const app = express();
 const PORT = 8080;
@@ -190,7 +191,7 @@ app.post("/logout", (req, res) => {
 app.post("/prompt", (req, res) => {
   const language = req.body.language;
   const text = req.body.text;
-  const usrID = req.session.user;
+  let usrID = req.session.user;
   const isAuth = req.session.isAuth;
 
   const audio = new Audio({
@@ -203,7 +204,8 @@ app.post("/prompt", (req, res) => {
     .save()
     .then((result) => {
       console.log("Saved to database:", result);
-      const audioID = result._id;
+      const audioID = result._id.toString();
+      usrID = usrID.toString();
 
       console.log("text = " + text);
       console.log("lang = " + language);
@@ -211,7 +213,18 @@ app.post("/prompt", (req, res) => {
       console.log("isAuth = " + isAuth);
       console.log("audioID = " + audioID);
 
-      runPythonScript(text, language, usrID, audioID);
+      runPythonScript(text, language, usrID, audioID)
+        .then(() => {
+          const filePath = path.join(
+            __dirname,
+            "audio",
+            usrID,
+            audioID + ".mp3"
+          );
+          console.log("File path:", filePath);
+          res.sendFile(filePath);
+        })
+        .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
 });
