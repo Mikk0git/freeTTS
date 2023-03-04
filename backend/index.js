@@ -205,6 +205,7 @@ app.post("/prompt", (req, res) => {
     .then((result) => {
       console.log("Saved to database:", result);
       const audioID = result._id.toString();
+      usrID === undefined ? (usrID = "undefined") : usrID;
       usrID = usrID.toString();
 
       console.log("text = " + text);
@@ -212,7 +213,6 @@ app.post("/prompt", (req, res) => {
       console.log("userID = " + usrID);
       console.log("isAuth = " + isAuth);
       console.log("audioID = " + audioID);
-
       runPythonScript(text, language, usrID, audioID)
         .then(() => {
           const filePath = path.join(
