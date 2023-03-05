@@ -53,7 +53,9 @@ export function AppProfile() {
   if (isLoggedIn) {
     return (
       <div className="AppProfile">
-        <h1>Profile</h1>
+        <Link to={"/profile"}>
+          <h1>Profile</h1>
+        </Link>
         <AppLogout />
       </div>
     );

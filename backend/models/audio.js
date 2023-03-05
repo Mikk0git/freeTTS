@@ -10,8 +10,14 @@ const audioShema = new Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
   userID: {
     type: String,
+    // type: mongoose.SchemaType.ObjectId,
     required: false,
   },
 });

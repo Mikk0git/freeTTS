@@ -205,8 +205,7 @@ app.post("/prompt", (req, res) => {
     .then((result) => {
       console.log("Saved to database:", result);
       const audioID = result._id.toString();
-      usrID === undefined ? (usrID = "undefined") : usrID;
-      usrID = usrID.toString();
+      usrID === undefined ? (usrID = "undefined") : (usrID = usrID.toString());
 
       console.log("text = " + text);
       console.log("lang = " + language);
@@ -227,4 +226,23 @@ app.post("/prompt", (req, res) => {
         .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
+});
+
+app.post("/UserAudio", (req, res) => {
+  console.log(req.session.user);
+  if (req.session.user) {
+    (async () => {
+      try {
+        const usersAudio = await Audio.find({ userID: req.session.user });
+        console.log("User's audio: " + usersAudio);
+        res
+          .status(200)
+          .send({ message: "User is logged in", usersAudio: usersAudio });
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  } else {
+    res.status(401).send("User isn't logged in");
+  }
 });

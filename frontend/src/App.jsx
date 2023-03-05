@@ -1,4 +1,5 @@
 import { AppProfile } from "./components/AppProfile";
+import { AppProfilePage } from "./components/AppProfilePage";
 import { AppLogin } from "./components/AppLogin";
 import { AppForm } from "./components/AppForm";
 import { Link, Route, Routes } from "react-router-dom";
@@ -28,6 +29,7 @@ function App() {
             </div>
           }
         />
+        <Route path="/profile" element={<AppProfilePage />} />
       </Routes>
     </div>
   );
