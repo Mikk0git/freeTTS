@@ -66,6 +66,43 @@ export function AppProfilePage() {
 }
 
 function AudioGridItem({ audioData, deleteAudioHandler }) {
+  const langFlag = (audioLang) => {
+    switch (audioLang) {
+      case "en":
+        return "🇺🇸";
+      case "it":
+        return "🇮🇹";
+      case "pt":
+        return "🇵🇹";
+      case "zh":
+        return "🇨🇳";
+      case "es":
+        return "🇪🇸";
+      case "fr":
+        return "🇫🇷";
+      case "ar":
+        return "🇸🇦";
+      case "uk":
+        return "🇺🇦";
+      case "de":
+        return "🇩🇪";
+      case "tr":
+        return "🇹🇷";
+      case "ja":
+        return "🇯🇵";
+      case "ko":
+        return "🇰🇷";
+      case "nl":
+        return "🇳🇱";
+      case "pl":
+        return "🇵🇱";
+      case "id":
+        return "🇮🇩";
+      default:
+        return "lang";
+    }
+  };
+
   return (
     <div>
       {audioData
@@ -73,7 +110,7 @@ function AudioGridItem({ audioData, deleteAudioHandler }) {
         .reverse()
         .map((audio) => (
           <div key={audio.date} className="audioGridItem m-4">
-            <h2>Language: {audio.lang}</h2>
+            <h2>Language: {langFlag(audio.lang)}</h2>
             <p>{audio.text}</p>
             <h4>{audio.date}</h4>
             <button type="submit" onClick={() => deleteAudioHandler(audio._id)}>
