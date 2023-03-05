@@ -228,7 +228,7 @@ app.post("/prompt", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.post("/UserAudio", (req, res) => {
+app.post("/userAudio", (req, res) => {
   console.log(req.session.user);
   if (req.session.user) {
     (async () => {
@@ -244,5 +244,20 @@ app.post("/UserAudio", (req, res) => {
     })();
   } else {
     res.status(401).send("User isn't logged in");
+  }
+});
+
+app.post("/deleteAudio", async (req, res) => {
+  const audioID = req.body.id;
+  try {
+    const deletedAudio = await Audio.findByIdAndRemove(audioID);
+    console.log(deletedAudio);
+    res.send({
+      message: "Audio deleted successfully",
+      deletedAudio: deletedAudio,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error deleting audio");
   }
 });

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export function AppProfilePage() {
-  const [audioData, setAudioData] = useState([]);
   const getUserAudio = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/UserAudio",
+        "http://localhost:8080/userAudio",
         {},
         {
           withCredentials: true,
@@ -22,22 +21,13 @@ export function AppProfilePage() {
   useEffect(() => {
     getUserAudio();
   }, []);
-  return (
-    <section className="appProfilePage">
-      <h1>Your audio</h1>
-      <form onSubmit={getUserAudio}>
-        <button type="submit">refresh</button>
-      </form>
-      <div id="audioGrid" className="flex ml-4">
-        <AudioGridItem audioData={audioData} />
-      </div>
-    </section>
-  );
-}
-function AudioGridItem({ audioData }) {
-  const deleteAudio = async (event, id) => {
-    event.preventDefault();
+
+  const [audioData, setAudioData] = useState([]);
+
+  const deleteAudioHandler = async (id) => {
     console.log("del");
+    console.log(id);
+
     try {
       const response = await axios.post(
         "http://localhost:8080/deleteAudio",
@@ -49,12 +39,33 @@ function AudioGridItem({ audioData }) {
         }
       );
       if (response.status === 200) {
-        console.log("deleted ");
+        console.log("deleted " + response.data.deletedAudio);
+        const deletedAudio = response.data.deletedAudio;
+        const newAudioData = audioData.filter(
+          (audio) => audio._id !== deletedAudio._id
+        );
+        setAudioData(newAudioData);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  return (
+    <section className="appProfilePage">
+      <h1>Your audio</h1>
+
+      <div id="audioGrid" className="flex ml-4">
+        <AudioGridItem
+          audioData={audioData}
+          deleteAudioHandler={deleteAudioHandler}
+        />
+      </div>
+    </section>
+  );
+}
+
+function AudioGridItem({ audioData, deleteAudioHandler }) {
   return (
     <div>
       {audioData
@@ -65,9 +76,9 @@ function AudioGridItem({ audioData }) {
             <h2>Language: {audio.lang}</h2>
             <p>{audio.text}</p>
             <h4>{audio.date}</h4>
-            <form onSubmit={deleteAudio}>
-              <button type="submit">Delete</button>
-            </form>
+            <button type="submit" onClick={() => deleteAudioHandler(audio._id)}>
+              Delete
+            </button>
           </div>
         ))}
     </div>
