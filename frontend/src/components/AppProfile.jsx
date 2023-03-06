@@ -7,6 +7,7 @@ import { AppLogout } from "./AppLogout";
 export function AppProfile() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hideSignUp, sethideSignUp] = useState(false);
+  const [userName, setUserName] = useState(null);
 
   async function verifyLogin(event) {
     console.log("verifying");
@@ -22,7 +23,10 @@ export function AppProfile() {
       console.log(response.data);
       if (response.status === 200) {
         console.log("User is logged in as: " + response.data.userID);
+        console.log("User is logged in as: " + response.data.userName);
+
         setIsLoggedIn(true);
+        setUserName(response.data.userName);
       }
     } catch (error) {
       if (error.response.status === 401) {
@@ -54,7 +58,7 @@ export function AppProfile() {
     return (
       <div className="AppProfile">
         <Link to={"/profile"}>
-          <h1>Profile</h1>
+          <h1>{userName}</h1>
         </Link>
         <AppLogout />
       </div>

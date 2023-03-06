@@ -79,9 +79,9 @@ export function AppLogin() {
           <br />
           <input type="password" name="password" placeholder="Password" />
           <br />
-          <button onClick={changeToLogin}>Already have an account?</button>{" "}
-          <br />
           <button>Register</button>
+          <br />
+          <button onClick={changeToLogin}>Already have an account?</button>{" "}
         </form>
       </div>
     );
@@ -94,9 +94,9 @@ export function AppLogin() {
           <br />
           <input type="password" name="password" placeholder="Password" />
           <br />
-          <button onClick={changeToRegister}>Don't have an account?</button>
-          <br />
           <button type="submit">Login</button>
+          <br />
+          <button onClick={changeToRegister}>Don't have an account?</button>
         </form>
       </div>
     );

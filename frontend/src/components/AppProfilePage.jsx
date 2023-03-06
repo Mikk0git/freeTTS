@@ -110,7 +110,7 @@ function AudioGridItem({ audioData, deleteAudioHandler }) {
         .reverse()
         .map((audio) => (
           <div key={audio.date} className="audioGridItem m-4">
-            <h2>Language: {langFlag(audio.lang)}</h2>
+            <h2>{langFlag(audio.lang)}</h2>
             <p>{audio.text}</p>
             <h4>{audio.date}</h4>
             <button type="submit" onClick={() => deleteAudioHandler(audio._id)}>
