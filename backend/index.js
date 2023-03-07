@@ -167,12 +167,10 @@ app.post("/login", (req, res) => {
 
 app.post("/login/verify", async (req, res) => {
   console.log(req.session);
-  console.log(req.session.user);
-
-  const userName = await User.findById({ _id: req.session.user });
-  console.log(userName.name);
 
   if (req.session && req.session.user) {
+    const userName = await User.findById({ _id: req.session.user });
+    console.log(userName.name);
     res.status(200).send({
       message: "User is logged in",
       userID: req.session.user,
