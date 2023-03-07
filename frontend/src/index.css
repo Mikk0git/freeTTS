@@ -28,3 +28,8 @@ input {
   margin-top: 1rem;
   font-size: medium;
 }
+
+/* GenerateBtn */
+#generateBtn:active ~ label h2 {
+  font-weight: bold;
+}
