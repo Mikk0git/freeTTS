@@ -7,10 +7,14 @@ export function AppForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setGenerating(true);
     const formData = new FormData(event.target);
     const text = formData.get("textPrompt");
     const language = formData.get("language");
+
+    if ((text != null) & (language != null)) {
+      setGenerating(true);
+    }
+
     const response = await axios.post(
       "http://localhost:8080/prompt",
       {
