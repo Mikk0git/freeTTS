@@ -74,6 +74,8 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
         return "🇺🇸";
       case "it":
         return "🇮🇹";
+      case "cs":
+        return "🇨🇿";
       case "pt":
         return "🇵🇹";
       case "zh":
@@ -107,12 +109,12 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
   return (
     <div className=" bg-gray-900 bg-opacity-40 border-0 border-gray-900 border-solid rounded-xl     ">
       <div className="audioGridItem m-4">
-        <h2 className=" text-2xl mt-2">{langFlag(audio.lang)}</h2>
-        <p>{audio.text}</p>
-        <h4>{audio.date}</h4>
+        <h2 className=" text-2xl mt-2 ">{langFlag(audio.lang)}</h2>
+        <p className="  ">{audio.text}</p>
+        <h4 className="font-bold ">{audio.date}</h4>
         <button
           type="submit"
-          className="mb-2"
+          className="mb-2 font-bold "
           onClick={() => deleteAudioHandler(audio._id)}
         >
           Delete

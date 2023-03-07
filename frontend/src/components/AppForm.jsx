@@ -127,6 +127,17 @@ export function AppForm() {
             </label>
             <input
               type="radio"
+              id="Czech"
+              name="language"
+              className="hiddena langInput"
+              value="cs"
+            ></input>
+            <label htmlFor="Czech" className="lang  m-4">
+              {" "}
+              🇨🇿{" "}
+            </label>
+            <input
+              type="radio"
               id="Italian"
               name="language"
               className="hiddena langInput"
