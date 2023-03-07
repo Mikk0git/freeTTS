@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <nav className="App-navbar flex justify-between mt-2">
-        <div className="logo">
+        <div className="logo ml-[calc(50vw-29px)]">
           <h1 className="font-bold  ">
             <a href="/">freeTTS</a>
           </h1>
@@ -24,7 +24,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <div id="appLoginWrapper" className="flex justify-center border-2">
+            <div className="flex justify-center w-[70vw]  border-2  mt-[6rem] p-[3rem] ml-auto mr-auto sm:max-w-[500px]  ">
               <AppLogin />
             </div>
           }

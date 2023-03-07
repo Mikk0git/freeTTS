@@ -31,12 +31,12 @@ export function AppForm() {
       <section className="p-7 flex justify-center text-center">
         <form onSubmit={handleSubmit}>
           <textarea
-            className="textPrompt text-black"
+            className="textPrompt text-black w-[70vw] h-[40vh] border-black border-[3px] "
             name="textPrompt"
           ></textarea>
 
           {/* Language list */}
-          <div id="langList" className=" justify-between ">
+          <div id="langList" className=" justify-between w-[70vw] text-2xl ">
             <input
               type="radio"
               id="English"

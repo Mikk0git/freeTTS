@@ -70,9 +70,10 @@ export function AppLogin() {
   };
   if (showRegister === true) {
     return (
-      <div className="AppLogin AppRegisterForm">
-        <h2>Sign up</h2>
+      <div className="AppLogin AppRegisterForm flex justify-center m-[1.5rem]">
+        <br />
         <form onSubmit={handleSubmitRegister}>
+          <h2 className="mb-[0.5rem]">Sign up</h2>
           <input type="text" name="name" placeholder="Name" />
           <br />
           <input type="email" name="email" placeholder="Email" />
@@ -87,9 +88,11 @@ export function AppLogin() {
     );
   } else {
     return (
-      <div className="AppLogin AppLoginForm">
-        <h2>Sign in</h2>
+      <div className="AppLogin AppLoginForm flex justify-center m-[1.5rem]">
+        <br />
         <form onSubmit={handleSubmitLogin}>
+          <h2 className="mb-[0.5rem]">Sign in</h2>
+
           <input type="email" name="email" placeholder="Email" />
           <br />
           <input type="password" name="password" placeholder="Password" />

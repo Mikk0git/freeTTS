@@ -14,56 +14,6 @@ input {
   overflow-wrap: break-word;
 }
 
-.logo {
-  margin-left: calc(50vw - 29px);
-}
-
-.textPrompt {
-  width: 70vw;
-  height: 40vh;
-  border: 3px black solid;
-}
-
-#langList {
-  width: 70vw;
-  font-size: x-large;
-}
-
-/* Login */
-#appLoginWrapper {
-  margin-left: 10vw;
-  margin-right: 10vw;
-  margin-top: 6rem;
-  padding: 3rem;
-}
-@media (min-width: 500px) {
-  #appLoginWrapper {
-    margin-left: 20vw;
-    margin-right: 20vw;
-  }
-}
-@media (min-width: 600px) {
-  #appLoginWrapper {
-    margin-left: 25vw;
-    margin-right: 25vw;
-  }
-}
-@media (min-width: 850px) {
-  #appLoginWrapper {
-    margin-left: 30vw;
-    margin-right: 30vw;
-  }
-}
-@media (min-width: 1000px) {
-  #appLoginWrapper {
-    margin-left: 35vw;
-    margin-right: 35vw;
-  }
-}
-
-.AppLogin {
-  margin: 1.5rem;
-}
 .AppLogin h2 {
   margin-bottom: 0.5rem;
 }
