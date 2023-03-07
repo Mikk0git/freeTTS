@@ -123,7 +123,7 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
         <h4 className="font-bold text-xs ">{dateFormatter(audio.date)}</h4>
         <button
           type="submit"
-          className="mb-2 font-bold "
+          className="mb-2 font-bold hover:text-red-700"
           onClick={() => deleteAudioHandler(audio._id)}
         >
           Delete

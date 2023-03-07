@@ -27,7 +27,9 @@ export function AppLogout() {
   return (
     <div className="AppLogout">
       <form onSubmit={handleLogout}>
-        <button type="submit">Logout</button>
+        <button type="submit" className=" hover:font-bold">
+          Logout
+        </button>
       </form>
     </div>
   );
