@@ -109,12 +109,17 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
         return "lang";
     }
   };
+  const dateFormater = (audioDate) => {
+    const audioYear = audioDate.slice(0, 10);
+    const audioHour = audioDate.slice(11, 19);
+    return audioHour + " " + audioYear;
+  };
   return (
     <div className=" bg-gray-900 bg-opacity-40 border-0 border-gray-900 border-solid rounded-xl     ">
       <div className="audioGridItem m-4">
         <h2 className=" text-2xl mt-2 ">{langFlag(audio.lang)}</h2>
-        <p className="  ">{audio.text}</p>
-        <h4 className="font-bold ">{audio.date}</h4>
+        <p className="text-lg">{audio.text}</p>
+        <h4 className="font-bold text-xs ">{dateFormater(audio.date)}</h4>
         <button
           type="submit"
           className="mb-2 font-bold "
