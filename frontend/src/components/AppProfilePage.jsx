@@ -53,19 +53,21 @@ export function AppProfilePage() {
 
   return (
     <section className="appProfilePage">
-      <h1>Your audio</h1>
+      <h1 className="ml-5">Your audio</h1>
 
-      <div id="audioGrid" className="flex ml-4">
-        <AudioGridItem
-          audioData={audioData}
-          deleteAudioHandler={deleteAudioHandler}
-        />
+      <div id="audioGrid" className=" m-6">
+        {audioData
+          .slice(0)
+          .reverse()
+          .map((audio) => (
+            <AudioGridItem key={audio.date} audio={audio} />
+          ))}
       </div>
     </section>
   );
 }
 
-function AudioGridItem({ audioData, deleteAudioHandler }) {
+function AudioGridItem({ audio, deleteAudioHandler }) {
   const langFlag = (audioLang) => {
     switch (audioLang) {
       case "en":
@@ -102,22 +104,20 @@ function AudioGridItem({ audioData, deleteAudioHandler }) {
         return "lang";
     }
   };
-
   return (
-    <div>
-      {audioData
-        .slice(0)
-        .reverse()
-        .map((audio) => (
-          <div key={audio.date} className="audioGridItem m-4">
-            <h2>{langFlag(audio.lang)}</h2>
-            <p>{audio.text}</p>
-            <h4>{audio.date}</h4>
-            <button type="submit" onClick={() => deleteAudioHandler(audio._id)}>
-              Delete
-            </button>
-          </div>
-        ))}
+    <div className=" bg-gray-900 bg-opacity-40 border-0 border-gray-900 border-solid rounded-xl     ">
+      <div className="audioGridItem m-4">
+        <h2 className=" text-2xl mt-2">{langFlag(audio.lang)}</h2>
+        <p>{audio.text}</p>
+        <h4>{audio.date}</h4>
+        <button
+          type="submit"
+          className="mb-2"
+          onClick={() => deleteAudioHandler(audio._id)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 }
