@@ -26,7 +26,6 @@ export function AppProfilePage() {
 
   const deleteAudioHandler = async (id) => {
     console.log("del");
-    console.log(id);
 
     try {
       const response = await axios.post(
@@ -60,7 +59,11 @@ export function AppProfilePage() {
           .slice(0)
           .reverse()
           .map((audio) => (
-            <AudioGridItem key={audio.date} audio={audio} />
+            <AudioGridItem
+              key={audio.date}
+              audio={audio}
+              deleteAudioHandler={deleteAudioHandler}
+            />
           ))}
       </div>
     </section>
