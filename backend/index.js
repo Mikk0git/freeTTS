@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: ".env" });
 const { spawn } = require("child_process");
 const express = require("express");
 const session = require("express-session");
