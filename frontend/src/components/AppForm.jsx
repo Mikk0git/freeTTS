@@ -17,7 +17,7 @@ export function AppForm() {
     }
 
     const response = await axios.post(
-      "http://localhost:8080/prompt",
+      "https://freetts-api.onrender.com:8080/prompt",
       {
         text,
         language,

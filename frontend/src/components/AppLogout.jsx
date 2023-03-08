@@ -8,7 +8,7 @@ export function AppLogout() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/logout",
+        "https://freetts-api.onrender.com:8080/logout",
         {},
         {
           withCredentials: true,
