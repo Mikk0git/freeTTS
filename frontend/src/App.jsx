@@ -3,6 +3,7 @@ import { AppProfilePage } from "./components/AppProfilePage";
 import { AppLogin } from "./components/AppLogin";
 import { AppForm } from "./components/AppForm";
 import { Link, Route, Routes } from "react-router-dom";
+import { AppCookie } from "./components/AppCookie";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         />
         <Route path="/profile" element={<AppProfilePage />} />
       </Routes>
+      <AppCookie />
     </div>
   );
 }

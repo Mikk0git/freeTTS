@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 
 export function AppCookie({}) {
-  const showCookie = () => {
-    const userIDvalue = document.cookie.indexOf("userID");
-    if (userIDvalue !== -1) {
-      console.log("ID: " + userIDvalue);
-      return null;
-    } else {
-      console.log("ldoas");
-      return (
-        <div className="App-cookie">
-          <button
-            onClick={addCookie}
-            className="cookieBtn border-2 p-1 border-slate-600 border-solid rounded-sm"
-          >
-            Cookie
-          </button>
-        </div>
-      );
-    }
+  const [cookieConcentState, setCookieConcentState] = useState(false);
+
+  const giveConcent = (event) => {
+    event.preventDefault();
+    localStorage.setItem("cookieConcent", true);
+    setCookieConcentState(true);
   };
 
-  const addCookie = () => {
-    document.cookie =
-      "userID=1; SameSite=None; Secure; expires=" +
-      new Date(Date.now() + 86400000).toUTCString() +
-      "; path=/";
-    showCookie();
-  };
-  return showCookie();
+  if (!localStorage.getItem("cookieConcent") && !cookieConcentState) {
+    return (
+      <div className="AppCookie fixed inset-0 z-50 bg-[rgba(0,0,0,0.8)] flex flex-col justify-center items-center text-center">
+        <p className="font-bold mr-6 ml-6">
+          We use cookies on this website to improve Your browsing experience, we
+          do not use them to track You.
+        </p>
+        <div className="flex flex-row">
+          <form onSubmit={giveConcent}>
+            {" "}
+            <button className="m-4" type="submit">
+              Accept
+            </button>
+          </form>
+          <button className="m-4">Learn more</button>
+          {/* Dodać link do learnMore */}
+        </div>
+      </div>
+    );
+  }
 }

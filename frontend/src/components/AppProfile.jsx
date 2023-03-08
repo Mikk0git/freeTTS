@@ -6,7 +6,7 @@ import { AppLogout } from "./AppLogout";
 
 export function AppProfile() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [hideSignUp, sethideSignUp] = useState(false);
+  const [hideSignUp, setHideSignUp] = useState(false);
   const [userName, setUserName] = useState(null);
 
   async function verifyLogin(event) {
@@ -40,9 +40,9 @@ export function AppProfile() {
 
   const verifyUrl = () => {
     if (window.location.pathname === "/login") {
-      sethideSignUp(true);
+      setHideSignUp(true);
     } else {
-      sethideSignUp(false);
+      setHideSignUp(false);
     }
   };
 
