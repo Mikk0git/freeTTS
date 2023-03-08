@@ -52,7 +52,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://freetts.netlify.app",
     credentials: true,
   })
 );
