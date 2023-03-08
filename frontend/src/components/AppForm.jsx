@@ -11,7 +11,8 @@ export function AppForm() {
     const text = formData.get("textPrompt");
     const language = formData.get("language");
 
-    if ((text != null) & (language != null)) {
+    if (text != "" && language != null) {
+      console.log(text);
       setGenerating(true);
     }
 
