@@ -265,3 +265,19 @@ app.post("/deleteAudio", async (req, res) => {
     res.status(500).send("Error deleting audio");
   }
 });
+
+app.post("/loadAudio", async (req, res) => {
+  const audioID = req.body.id.toString();
+  const usrID = req.session.user.toString();
+
+  try {
+    const loadedAudio = await Audio.findById(audioID);
+    console.log(loadedAudio);
+    const filePath = path.join(__dirname, "audio", usrID, audioID + ".mp3");
+    console.log(filePath);
+    res.sendFile(filePath);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error loading audio");
+  }
+});

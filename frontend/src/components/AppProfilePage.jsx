@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export function AppProfilePage() {
+  const [audioData, setAudioData] = useState([]);
+
   const getUserAudio = async () => {
     try {
       const response = await axios.post(
@@ -11,7 +13,6 @@ export function AppProfilePage() {
           withCredentials: true,
         }
       );
-      console.log(response.data.usersAudio);
       setAudioData(response.data.usersAudio);
     } catch (error) {
       console.log(error);
@@ -21,8 +22,6 @@ export function AppProfilePage() {
   useEffect(() => {
     getUserAudio();
   }, []);
-
-  const [audioData, setAudioData] = useState([]);
 
   const deleteAudioHandler = async (id) => {
     console.log("del");
@@ -52,7 +51,7 @@ export function AppProfilePage() {
 
   return (
     <section className="appProfilePage">
-      <h1 className="ml-5">Your audio</h1>
+      <h1 className="ml-7 text-xl">Your audio</h1>
 
       <div id="audioGrid" className=" m-6">
         {audioData
@@ -71,6 +70,31 @@ export function AppProfilePage() {
 }
 
 function AudioGridItem({ audio, deleteAudioHandler }) {
+  const [audioSrc, setAudioSrc] = useState(null);
+
+  const loadAudioHandler = async (id) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/loadAudio",
+        {
+          id,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "audio/mpeg",
+          },
+          responseType: "arraybuffer",
+        }
+      );
+      const blob = new Blob([response.data], { type: "audio/mpeg" });
+      setAudioSrc(URL.createObjectURL(blob));
+    } catch (error) {
+      console.log("error");
+      console.log(error);
+    }
+  };
+
   const langFlag = (audioLang) => {
     switch (audioLang) {
       case "en":
@@ -115,6 +139,7 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
     const audioHour = audioDate.slice(11, 19);
     return audioHour + " " + audioYear;
   };
+
   return (
     <div className=" bg-gray-900 bg-opacity-40 border-0 border-gray-900 border-solid rounded-xl     ">
       <div className="audioGridItem m-4">
@@ -122,12 +147,25 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
         <p className="text-lg">{audio.text}</p>
         <h4 className="font-bold text-xs ">{dateFormatter(audio.date)}</h4>
         <button
-          type="submit"
           className="mb-2 font-bold hover:text-red-700"
           onClick={() => deleteAudioHandler(audio._id)}
         >
           Delete
         </button>
+        <button
+          className="mb-2 ml-2 font-bold hover:text-gray-700"
+          onClick={() => loadAudioHandler(audio._id)}
+        >
+          Load file
+        </button>
+        {audioSrc && (
+          <div className="flex justify-start items-center">
+            <audio controls className="mb-1 mr-2" src={audioSrc} />
+            <a href={audioSrc} download>
+              Download
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
