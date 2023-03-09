@@ -7,7 +7,7 @@ export function AppProfilePage() {
   const getUserAudio = async () => {
     try {
       const response = await axios.post(
-        "https://freetts-api.onrender.com:8080/userAudio",
+        "http://localhost:8080/userAudio",
         {},
         {
           withCredentials: true,
@@ -28,7 +28,7 @@ export function AppProfilePage() {
 
     try {
       const response = await axios.post(
-        "https://freetts-api.onrender.com:8080/deleteAudio",
+        "http://localhost:8080/deleteAudio",
         {
           id,
         },
@@ -75,7 +75,7 @@ function AudioGridItem({ audio, deleteAudioHandler }) {
   const loadAudioHandler = async (id) => {
     try {
       const response = await axios.post(
-        "https://freetts-api.onrender.com:8080/loadAudio",
+        "http://localhost:8080/loadAudio",
         {
           id,
         },

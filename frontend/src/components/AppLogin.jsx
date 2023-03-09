@@ -50,7 +50,7 @@ export function AppLogin() {
     const name = formData.get("name");
     try {
       const response = await axios.post(
-        "https://freetts-api.onrender.com:8080/register",
+        "http://localhost:8080/register",
         {
           name,
           email,

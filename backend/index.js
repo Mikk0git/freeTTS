@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "process.env" });
+require("dotenv").config({ path: "../.env" });
 const { spawn } = require("child_process");
 const express = require("express");
 const session = require("express-session");
@@ -16,7 +16,6 @@ const app = express();
 const PORT = 8080;
 
 //Connecting to mongoDB
-
 const dbURI =
   "mongodb+srv://" +
   process.env.MONGODB_LOGIN +
@@ -52,7 +51,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "https://freetts.netlify.app",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );

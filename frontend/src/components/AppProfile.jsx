@@ -14,7 +14,7 @@ export function AppProfile() {
 
     try {
       const response = await axios.post(
-        "https://freetts-api.onrender.com:8080/login/verify",
+        "http://localhost:8080/login/verify",
         {},
         {
           withCredentials: true,
