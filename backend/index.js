@@ -155,6 +155,7 @@ app.post("/login", (req, res) => {
         res.status(200).send("Logged " + req.session.user);
         return req.session.user;
       } else {
+        console.log("Incorrect login details");
         res.status(401).send("Incorrect login details");
       }
     })

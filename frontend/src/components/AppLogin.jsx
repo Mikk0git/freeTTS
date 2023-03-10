@@ -3,6 +3,7 @@ import axios from "axios";
 
 export function AppLogin() {
   const [showRegister, setShowRegister] = useState(true);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   const changeToLogin = () => {
     setShowRegister(false);
@@ -31,14 +32,14 @@ export function AppLogin() {
           withCredentials: true,
         }
       );
-      console.log(response.data);
       if (response.status === 200) {
         console.log("logged in");
         //window.location.reload();
         window.location.href = "/";
       }
     } catch (error) {
-      console.error(error);
+      console.log("invalid email or password");
+      setInvalidCredentials(true);
     }
   };
   const handleSubmitRegister = async (event) => {
@@ -100,8 +101,19 @@ export function AppLogin() {
           <button type="submit">Login</button>
           <br />
           <button onClick={changeToRegister}>Don't have an account?</button>
+          <AppInvalidCredentials invalidCredentials={invalidCredentials} />
         </form>
       </div>
     );
+  }
+}
+
+function AppInvalidCredentials({ invalidCredentials }) {
+  if (invalidCredentials) {
+    return (
+      <p className=" text-red-600 mt-1 font-bold ">Invalid email or password</p>
+    );
+  } else {
+    return null;
   }
 }
